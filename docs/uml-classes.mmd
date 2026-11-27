@@ -1,0 +1,158 @@
+classDiagram
+direction LR
+
+class UsageRecord {
+  -String appName
+  -Category category
+  -int minutesUsed
+  -int longestSession
+  -LocalDate date
+  +addUsage(int, int)
+}
+class DailyRecord {
+  -LocalDate date
+  -int totalMinutes
+  -String petStateName
+  -Map categoryTotals
+}
+class Category {
+  <<enumeration>>
+  SOCIAL
+  GAMES
+  STUDY
+  COMMUNICATION
+  OTHER
+}
+class Settings {
+  -int dailyLimit
+  -LocalTime resetTime
+  -boolean notificationsOn
+  -boolean warningsOn
+  -int longSessionMinutes
+  -int tiredPercent
+  -int sickPercent
+  -int devastatedPercent
+  +setDailyLimit(int)
+  +setResetTime(LocalTime)
+  +setThresholds(int, int, int)
+  +dayOf(LocalDateTime) LocalDate
+}
+class UsageTracker {
+  +addUsage(UsageRecord)
+  +replaceAll(List)
+  +getTotalScreenTime() int
+  +getRatio() double
+  +createDailyRecord(String) DailyRecord
+  +reset(LocalDate)
+}
+class WeeklyReport {
+  +addDay(DailyRecord)
+  +getWeeklyAverage() double
+  +getHighestDay() DailyRecord
+  +getTrend() Trend
+}
+class Pet {
+  -String name
+  -PetState state
+  +setThresholds(double, double, double)
+  +updateState(double) boolean
+  +getAppearance() String
+}
+class PetState {
+  <<abstract>>
+  #String stateName
+  +matches(double) boolean
+  +getAppearance()* String
+  +getMessage()* String
+  +getStatusText()* String
+}
+class HealthyState
+class TiredState
+class SickState
+class DevastatedState
+
+class Notifiable {
+  <<interface>>
+  +sendNotification(String)
+}
+class NotificationService {
+  +sendNotification(String)
+  #deliver(String)
+  +notifyStateChange(PetState)
+  +notifyWarning(String)
+  +notifyLongSession(UsageRecord, int)
+}
+class AndroidNotificationService {
+  #deliver(String)
+}
+class UsageMonitor {
+  +check(UsageTracker, Settings, Pet, NotificationService)
+  +saveState() String
+  +restoreState(String)
+}
+
+class UsageSource {
+  <<interface>>
+  +readUsageFor(LocalDate, LocalTime) List
+}
+class SampleUsageSource
+class UsageReader {
+  <<Kotlin>>
+}
+class AppSession {
+  +sync(UsageSource, LocalDate)
+  +loadHistory(UsageSource, LocalDate)
+  +rollOverIfNewDay(LocalDate) boolean
+  +refreshPet()
+}
+class RecordCodec {
+  +encode(DailyRecord) String
+  +decode(String) DailyRecord
+}
+class AppStore {
+  +load(AppSession)
+  +saveSettings(AppSession)
+  +saveDays(WeeklyReport)
+}
+class UsageCheckWorker {
+  +doWork() Result
+}
+class InvalidSettingsException {
+  <<checked exception>>
+}
+class MissingPermissionException {
+  <<checked exception>>
+}
+
+PetState <|-- HealthyState
+PetState <|-- TiredState
+PetState <|-- SickState
+PetState <|-- DevastatedState
+Notifiable <|.. NotificationService
+NotificationService <|-- AndroidNotificationService
+UsageSource <|.. SampleUsageSource
+UsageSource <|.. UsageReader
+
+Pet o-- PetState : current
+Pet o-- PetState : all states
+UsageTracker o-- UsageRecord
+UsageTracker ..> DailyRecord : creates
+UsageTracker --> Settings
+UsageRecord --> Category
+DailyRecord --> Category
+WeeklyReport o-- DailyRecord : last 7
+
+AppSession *-- Settings
+AppSession *-- Pet
+AppSession *-- UsageTracker
+AppSession *-- WeeklyReport
+AppSession *-- UsageMonitor
+AppSession --> NotificationService
+AppSession ..> UsageSource : reads
+UsageMonitor ..> NotificationService : sends alerts
+
+AppStore ..> AppSession : saves/loads
+AppStore ..> RecordCodec
+UsageCheckWorker ..> AppSession
+Settings ..> InvalidSettingsException : throws
+UsageSource ..> MissingPermissionException : throws
