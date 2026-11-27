@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- White 22 dp circle with a 3 dp margin, so the thumb is 28 dp wide like the track is tall. -->
+<inset xmlns:android="http://schemas.android.com/apk/res/android"
+    android:insetBottom="3dp"
+    android:insetLeft="3dp"
+    android:insetRight="3dp"
+    android:insetTop="3dp">
+    <shape android:shape="oval">
+        <size android:width="22dp" android:height="22dp" />
+        <solid android:color="@color/white" />
+    </shape>
+</inset>

@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- PLACEHOLDER (14 x 14) for the small icon in the condition pill. Replace it with the
+     exported "ic_condition_healthy" (and add ic_condition_tired / _sick / _devastated). -->
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="14dp"
+    android:height="14dp"
+    android:viewportWidth="14"
+    android:viewportHeight="14">
+    <path
+        android:fillColor="#527A60"
+        android:pathData="M7,7m-4,0a4,4 0,1 1,8 0a4,4 0,1 1,-8 0" />
+</vector>

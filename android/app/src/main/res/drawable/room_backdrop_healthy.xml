@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- PLACEHOLDER (256 x 256): two soft circles behind the pet. Replace it with the exported
+     "room_backdrop_healthy" (and add room_backdrop_tired / _sick / _devastated). -->
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="256dp"
+    android:height="256dp"
+    android:viewportWidth="256"
+    android:viewportHeight="256">
+    <path
+        android:fillColor="#40FFFFFF"
+        android:pathData="M128,128m-110,0a110,110 0,1 1,220 0a110,110 0,1 1,-220 0" />
+    <path
+        android:fillColor="#40FFFFFF"
+        android:pathData="M128,128m-70,0a70,70 0,1 1,140 0a70,70 0,1 1,-140 0" />
+</vector>
