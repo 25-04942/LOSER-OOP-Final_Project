@@ -1,0 +1,243 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <style name="Theme.Loser" parent="Theme.AppCompat.Light.NoActionBar">
+        <item name="android:windowBackground">@color/background</item>
+        <item name="android:statusBarColor">@android:color/transparent</item>
+        <item name="android:navigationBarColor">@android:color/transparent</item>
+        <item name="colorPrimary">@color/accent</item>
+        <item name="colorAccent">@color/accent</item>
+    </style>
+
+    <!-- Text styles from the design (Nunito Regular / ExtraBold). -->
+    <style name="LoserText">
+        <item name="android:fontFamily">@font/nunito_regular</item>
+    </style>
+    <style name="LoserText.Tagline">
+        <item name="android:textSize">13sp</item>
+        <item name="android:textColor">@color/text_muted</item>
+    </style>
+    <style name="LoserText.Greeting">
+        <item name="android:fontFamily">@font/nunito_extrabold</item>
+        <item name="android:textSize">28sp</item>
+        <item name="android:textColor">@color/text_primary</item>
+    </style>
+    <style name="LoserText.Link">
+        <item name="android:fontFamily">@font/nunito_extrabold</item>
+        <item name="android:textSize">12sp</item>
+        <item name="android:textColor">@color/accent</item>
+    </style>
+    <style name="LoserText.PetName">
+        <item name="android:fontFamily">@font/nunito_extrabold</item>
+        <item name="android:textSize">22sp</item>
+        <item name="android:textColor">@color/text_primary</item>
+    </style>
+    <style name="LoserText.Pill">
+        <item name="android:fontFamily">@font/nunito_extrabold</item>
+        <item name="android:textSize">12sp</item>
+        <item name="android:textColor">@color/text_primary</item>
+    </style>
+    <style name="LoserText.Caption">
+        <item name="android:textSize">12sp</item>
+        <item name="android:textColor">@color/text_secondary</item>
+    </style>
+    <style name="LoserText.CardLabel">
+        <item name="android:fontFamily">@font/nunito_extrabold</item>
+        <item name="android:textSize">14sp</item>
+        <item name="android:textColor">@color/success_text</item>
+    </style>
+    <style name="LoserText.BigNumber">
+        <item name="android:fontFamily">@font/nunito_extrabold</item>
+        <item name="android:textSize">26sp</item>
+        <item name="android:textColor">@color/text_primary</item>
+    </style>
+    <style name="LoserText.CardSub">
+        <item name="android:textSize">12sp</item>
+        <item name="android:textColor">@color/success_text</item>
+    </style>
+    <style name="LoserText.CardLink">
+        <item name="android:fontFamily">@font/nunito_extrabold</item>
+        <item name="android:textSize">13sp</item>
+        <item name="android:textColor">@color/success_text</item>
+    </style>
+    <style name="LoserText.CardTitle">
+        <item name="android:fontFamily">@font/nunito_extrabold</item>
+        <item name="android:textSize">16sp</item>
+        <item name="android:textColor">@color/text_primary</item>
+    </style>
+    <style name="LoserText.CardBody">
+        <item name="android:textSize">13sp</item>
+        <item name="android:textColor">@color/text_secondary</item>
+    </style>
+    <style name="LoserText.NavLabel">
+        <item name="android:fontFamily">@font/nunito_extrabold</item>
+        <item name="android:textSize">11sp</item>
+        <item name="android:textColor">@color/nav_tint</item>
+    </style>
+
+    <!-- Styles added for the "Your screen time" screen -->
+    <style name="LoserText.BackLink">
+        <item name="android:fontFamily">@font/nunito_extrabold</item>
+        <item name="android:textSize">14sp</item>
+        <item name="android:textColor">@color/accent</item>
+    </style>
+    <style name="LoserText.SectionTitle">
+        <item name="android:fontFamily">@font/nunito_extrabold</item>
+        <item name="android:textSize">20sp</item>
+        <item name="android:textColor">@color/text_primary</item>
+    </style>
+    <style name="LoserText.Segment">
+        <item name="android:fontFamily">@font/nunito_extrabold</item>
+        <item name="android:textSize">13sp</item>
+        <item name="android:textColor">@color/text_secondary</item>
+        <item name="android:gravity">center</item>
+    </style>
+    <style name="LoserText.SegmentSelected" parent="LoserText.Segment">
+        <item name="android:textColor">@color/accent</item>
+    </style>
+    <style name="LoserText.Headline">
+        <item name="android:fontFamily">@font/nunito_extrabold</item>
+        <item name="android:textSize">14sp</item>
+        <item name="android:textColor">@color/text_primary</item>
+    </style>
+    <style name="LoserText.TotalBig">
+        <item name="android:fontFamily">@font/nunito_extrabold</item>
+        <item name="android:textSize">36sp</item>
+        <item name="android:textColor">@color/text_primary</item>
+    </style>
+    <style name="LoserText.StateLabel">
+        <item name="android:fontFamily">@font/nunito_extrabold</item>
+        <item name="android:textSize">13sp</item>
+        <item name="android:textColor">@color/state_text_healthy</item>
+    </style>
+    <style name="LoserText.MiniStatus">
+        <item name="android:fontFamily">@font/nunito_extrabold</item>
+        <item name="android:textSize">12sp</item>
+        <item name="android:textColor">@color/success_text</item>
+    </style>
+    <style name="LoserText.RowLabel">
+        <item name="android:fontFamily">@font/nunito_extrabold</item>
+        <item name="android:textSize">13sp</item>
+        <item name="android:textColor">@color/text_primary</item>
+    </style>
+    <style name="LoserText.RowValue">
+        <item name="android:fontFamily">@font/nunito_extrabold</item>
+        <item name="android:textSize">13sp</item>
+        <item name="android:textColor">@color/text_secondary</item>
+    </style>
+    <style name="LoserText.AppMeta">
+        <item name="android:textSize">11sp</item>
+        <item name="android:textColor">@color/text_secondary</item>
+    </style>
+
+    <!-- Styles added for the "Weekly history" screen -->
+    <style name="LoserText.StatValue">
+        <item name="android:fontFamily">@font/nunito_extrabold</item>
+        <item name="android:textSize">28sp</item>
+        <item name="android:textColor">@color/text_primary</item>
+    </style>
+    <style name="LoserText.StatNote">
+        <item name="android:fontFamily">@font/nunito_extrabold</item>
+        <item name="android:textSize">10sp</item>
+        <item name="android:textColor">@color/success_text</item>
+    </style>
+    <style name="LoserText.ChartTitle">
+        <item name="android:fontFamily">@font/nunito_extrabold</item>
+        <item name="android:textSize">17sp</item>
+        <item name="android:textColor">@color/text_primary</item>
+    </style>
+    <style name="LoserText.DayLetter">
+        <item name="android:fontFamily">@font/nunito_extrabold</item>
+        <item name="android:textSize">11sp</item>
+        <item name="android:textColor">@color/text_secondary</item>
+    </style>
+    <style name="LoserText.DayNumber">
+        <item name="android:textSize">10sp</item>
+        <item name="android:textColor">@color/text_secondary</item>
+    </style>
+    <style name="LoserText.InsightTitle">
+        <item name="android:fontFamily">@font/nunito_extrabold</item>
+        <item name="android:textSize">16sp</item>
+        <item name="android:textColor">@color/success_text</item>
+    </style>
+    <style name="LoserText.InsightBody">
+        <item name="android:textSize">13sp</item>
+        <item name="android:textColor">@color/success_text</item>
+    </style>
+    <style name="LoserText.RecordMain">
+        <item name="android:fontFamily">@font/nunito_extrabold</item>
+        <item name="android:textSize">12sp</item>
+        <item name="android:textColor">@color/text_primary</item>
+    </style>
+    <style name="LoserText.RecordStatus">
+        <item name="android:textSize">11sp</item>
+        <item name="android:textColor">@color/success_text</item>
+    </style>
+
+    <!-- Styles added for the "Limits & alerts" screen -->
+    <style name="LoserText.CardTitleLarge">
+        <item name="android:fontFamily">@font/nunito_extrabold</item>
+        <item name="android:textSize">18sp</item>
+        <item name="android:textColor">@color/text_primary</item>
+    </style>
+    <style name="LoserText.SubTitle">
+        <item name="android:fontFamily">@font/nunito_extrabold</item>
+        <item name="android:textSize">16sp</item>
+        <item name="android:textColor">@color/text_primary</item>
+    </style>
+    <style name="LoserText.StatusOk">
+        <item name="android:fontFamily">@font/nunito_extrabold</item>
+        <item name="android:textSize">11sp</item>
+        <item name="android:textColor">@color/success_text</item>
+    </style>
+    <style name="LoserText.PreviewCaption">
+        <item name="android:fontFamily">@font/nunito_extrabold</item>
+        <item name="android:textSize">10sp</item>
+        <item name="android:textColor">@color/accent</item>
+    </style>
+    <style name="LoserText.PreviewTitle">
+        <item name="android:fontFamily">@font/nunito_extrabold</item>
+        <item name="android:textSize">15sp</item>
+        <item name="android:textColor">@color/text_primary</item>
+    </style>
+    <style name="LoserText.Button">
+        <item name="android:fontFamily">@font/nunito_extrabold</item>
+        <item name="android:textSize">15sp</item>
+        <item name="android:textColor">@color/white</item>
+        <item name="android:gravity">center</item>
+    </style>
+
+    <!-- Styles added for the "Connect your device" screen -->
+    <style name="LoserText.GreetingSmall" parent="LoserText.Greeting">
+        <item name="android:textSize">26sp</item>
+    </style>
+    <style name="LoserText.Badge">
+        <item name="android:fontFamily">@font/nunito_extrabold</item>
+        <item name="android:textSize">13sp</item>
+        <item name="android:textColor">@color/accent</item>
+    </style>
+    <style name="LoserText.StepStatus">
+        <item name="android:fontFamily">@font/nunito_extrabold</item>
+        <item name="android:textSize">11sp</item>
+        <item name="android:textColor">@color/accent</item>
+    </style>
+    <style name="LoserText.StepStatusOptional">
+        <item name="android:textSize">11sp</item>
+        <item name="android:textColor">@color/text_secondary</item>
+    </style>
+    <style name="LoserText.ButtonMedium">
+        <item name="android:fontFamily">@font/nunito_extrabold</item>
+        <item name="android:textSize">14sp</item>
+        <item name="android:textColor">@color/white</item>
+        <item name="android:gravity">center</item>
+    </style>
+    <style name="LoserText.ButtonSoft">
+        <item name="android:fontFamily">@font/nunito_extrabold</item>
+        <item name="android:textSize">13sp</item>
+        <item name="android:textColor">@color/accent</item>
+        <item name="android:gravity">center</item>
+    </style>
+    <style name="LoserText.Footnote">
+        <item name="android:textSize">11sp</item>
+        <item name="android:textColor">@color/text_secondary</item>
+    </style>
+</resources>
