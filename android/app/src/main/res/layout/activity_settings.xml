@@ -1,0 +1,572 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  "Limits & alerts" screen, built from the Figma frame "Mochi - Limits & alerts" (node 7:63).
+  The phone status bar and home indicator are drawn by Android, so they are not recreated.
+-->
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/root"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/background"
+    tools:context=".SettingsActivity">
+
+    <ScrollView
+        android:id="@+id/scroll"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:fillViewport="true"
+        android:scrollbars="none"
+        app:layout_constraintBottom_toTopOf="@id/bottomNav"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:focusableInTouchMode="true"
+            android:orientation="vertical"
+            android:paddingStart="20dp"
+            android:paddingTop="14dp"
+            android:paddingEnd="20dp"
+            android:paddingBottom="24dp">
+
+            <TextView
+                android:id="@+id/tvBack"
+                style="@style/LoserText.BackLink"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="4dp"
+                android:layout_marginTop="-14dp"
+                android:layout_marginBottom="-14dp"
+                android:background="?attr/selectableItemBackground"
+                android:clickable="true"
+                android:focusable="true"
+                android:paddingStart="4dp"
+                android:paddingTop="14dp"
+                android:paddingEnd="12dp"
+                android:paddingBottom="14dp"
+                android:text="@string/usage_back" />
+
+            <TextView
+                style="@style/LoserText.Greeting"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="4dp"
+                android:layout_marginTop="8dp"
+                android:text="@string/settings_title" />
+
+            <TextView
+                style="@style/LoserText.CardBody"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="4dp"
+                android:layout_marginTop="1dp"
+                android:id="@+id/tvSubtitle"
+                android:text="@string/settings_subtitle" />
+
+            <!-- Daily limit editor -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="12dp"
+                android:background="@drawable/bg_card_lavender"
+                android:orientation="vertical"
+                android:paddingStart="18dp"
+                android:paddingTop="16dp"
+                android:paddingEnd="18dp"
+                android:paddingBottom="14dp">
+
+                <TextView
+                    style="@style/LoserText.ChartTitle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/settings_limit_title" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="13dp"
+                    android:orientation="horizontal">
+
+                <FrameLayout
+                    android:id="@+id/boxHours"
+                    android:layout_width="0dp"
+                    android:layout_height="66dp"
+                    android:layout_marginStart="0dp"
+                    android:layout_marginEnd="6dp"
+                    android:layout_weight="1"
+                    android:background="@drawable/bg_input"
+                    android:clickable="true"
+                    android:focusable="false">
+
+                    <EditText
+                        android:id="@+id/etHours"
+                        style="@style/LoserText.StatValue"
+                        android:layout_width="match_parent"
+                        android:layout_height="38dp"
+                        android:layout_marginStart="16dp"
+                        android:layout_marginTop="7dp"
+                        android:layout_marginEnd="16dp"
+                        android:background="@null"
+                        android:contentDescription="@string/settings_hours"
+                        android:gravity="center_vertical"
+                        android:importantForAutofill="no"
+                        android:inputType="number"
+                        android:maxLength="2"
+                        android:padding="0dp"
+                        android:selectAllOnFocus="true"
+                        android:imeOptions="actionDone"
+                        tools:text="03" />
+
+                    <TextView
+                        style="@style/LoserText.Caption"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="16dp"
+                        android:layout_marginTop="43dp"
+                        android:text="@string/settings_hours" />
+                </FrameLayout>
+
+                <FrameLayout
+                    android:id="@+id/boxMinutes"
+                    android:layout_width="0dp"
+                    android:layout_height="66dp"
+                    android:layout_marginStart="6dp"
+                    android:layout_marginEnd="0dp"
+                    android:layout_weight="1"
+                    android:background="@drawable/bg_input"
+                    android:clickable="true"
+                    android:focusable="false">
+
+                    <EditText
+                        android:id="@+id/etMinutes"
+                        style="@style/LoserText.StatValue"
+                        android:layout_width="match_parent"
+                        android:layout_height="38dp"
+                        android:layout_marginStart="16dp"
+                        android:layout_marginTop="7dp"
+                        android:layout_marginEnd="16dp"
+                        android:background="@null"
+                        android:contentDescription="@string/settings_minutes"
+                        android:gravity="center_vertical"
+                        android:importantForAutofill="no"
+                        android:inputType="number"
+                        android:maxLength="2"
+                        android:padding="0dp"
+                        android:selectAllOnFocus="true"
+                        android:imeOptions="actionDone"
+                        tools:text="00" />
+
+                    <TextView
+                        style="@style/LoserText.Caption"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="16dp"
+                        android:layout_marginTop="43dp"
+                        android:text="@string/settings_minutes" />
+                </FrameLayout>
+                </LinearLayout>
+
+                <TextView
+                    android:id="@+id/tvLimitHint"
+                    style="@style/LoserText.Caption"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="12dp"
+                    tools:text="Choose 1 minute to 24 hours." />
+
+                <TextView
+                    style="@style/LoserText.Caption"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="7dp"
+                    android:id="@+id/tvLimitNote"
+                    android:text="@string/settings_limit_note" />
+            </LinearLayout>
+
+            <!-- Pet, day start, long-session warning and condition levels (proposal: adjustable thresholds, reset time) -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:background="@drawable/bg_chart_card"
+                android:orientation="vertical"
+                android:paddingStart="18dp"
+                android:paddingTop="16dp"
+                android:paddingEnd="18dp"
+                android:paddingBottom="16dp">
+
+                <TextView
+                    style="@style/LoserText.CardTitleLarge"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/settings_pet_card_title" />
+
+                <TextView
+                    style="@style/LoserText.Caption"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="14dp"
+                    android:text="@string/settings_pet_name_label" />
+
+                <EditText
+                    android:id="@+id/etPetName"
+                    style="@style/LoserText.Headline"
+                    android:layout_width="match_parent"
+                    android:layout_height="48dp"
+                    android:layout_marginTop="6dp"
+                    android:background="@drawable/bg_input"
+                    android:importantForAutofill="no"
+                    android:inputType="textCapWords"
+                    android:maxLength="20"
+                    android:paddingStart="16dp"
+                    android:paddingEnd="16dp"
+                    android:selectAllOnFocus="true"
+                    android:imeOptions="actionNext"
+                    android:singleLine="true" />
+
+                <TextView
+                    style="@style/LoserText.Caption"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="14dp"
+                    android:text="@string/settings_reset_label" />
+
+                <TextView
+                    android:id="@+id/tvResetTime"
+                    style="@style/LoserText.Headline"
+                    android:layout_width="match_parent"
+                    android:layout_height="48dp"
+                    android:layout_marginTop="6dp"
+                    android:background="@drawable/bg_input"
+                    android:clickable="true"
+                    android:focusable="true"
+                    android:foreground="?attr/selectableItemBackground"
+                    android:gravity="center_vertical"
+                    android:paddingStart="16dp"
+                    android:paddingEnd="16dp"
+                    tools:text="12:00 AM" />
+
+                <TextView
+                    style="@style/LoserText.Caption"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="14dp"
+                    android:text="@string/settings_long_label" />
+
+                <EditText
+                    android:id="@+id/etLongSession"
+                    style="@style/LoserText.Headline"
+                    android:layout_width="match_parent"
+                    android:layout_height="48dp"
+                    android:layout_marginTop="6dp"
+                    android:background="@drawable/bg_input"
+                    android:importantForAutofill="no"
+                    android:inputType="number"
+                    android:maxLength="4"
+                    android:paddingStart="16dp"
+                    android:paddingEnd="16dp"
+                    android:selectAllOnFocus="true"
+                    android:imeOptions="actionNext"
+                    android:singleLine="true" />
+
+                <TextView
+                    style="@style/LoserText.Caption"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="14dp"
+                    android:text="@string/settings_levels_label" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="6dp"
+                    android:orientation="horizontal">
+
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:layout_marginEnd="6dp"
+                        android:orientation="vertical">
+
+                        <TextView
+                            style="@style/LoserText.Caption"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/settings_level_tired" />
+
+                        <EditText
+                            android:id="@+id/etTired"
+                            style="@style/LoserText.Headline"
+                            android:layout_width="match_parent"
+                            android:layout_height="48dp"
+                            android:layout_marginTop="6dp"
+                            android:background="@drawable/bg_input"
+                            android:importantForAutofill="no"
+                            android:inputType="number"
+                            android:maxLength="3"
+                            android:paddingStart="16dp"
+                            android:paddingEnd="16dp"
+                            android:selectAllOnFocus="true"
+                            android:singleLine="true" />
+                    </LinearLayout>
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:layout_marginEnd="6dp"
+                        android:orientation="vertical">
+
+                        <TextView
+                            style="@style/LoserText.Caption"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/settings_level_sick" />
+
+                        <EditText
+                            android:id="@+id/etSick"
+                            style="@style/LoserText.Headline"
+                            android:layout_width="match_parent"
+                            android:layout_height="48dp"
+                            android:layout_marginTop="6dp"
+                            android:background="@drawable/bg_input"
+                            android:importantForAutofill="no"
+                            android:inputType="number"
+                            android:maxLength="3"
+                            android:paddingStart="16dp"
+                            android:paddingEnd="16dp"
+                            android:selectAllOnFocus="true"
+                            android:singleLine="true" />
+                    </LinearLayout>
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:layout_marginEnd="6dp"
+                        android:orientation="vertical">
+
+                        <TextView
+                            style="@style/LoserText.Caption"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/settings_level_devastated" />
+
+                        <EditText
+                            android:id="@+id/etDevastated"
+                            style="@style/LoserText.Headline"
+                            android:layout_width="match_parent"
+                            android:layout_height="48dp"
+                            android:layout_marginTop="6dp"
+                            android:background="@drawable/bg_input"
+                            android:importantForAutofill="no"
+                            android:inputType="number"
+                            android:maxLength="3"
+                            android:paddingStart="16dp"
+                            android:paddingEnd="16dp"
+                            android:selectAllOnFocus="true"
+                            android:singleLine="true" />
+                    </LinearLayout>
+                </LinearLayout>
+
+                <TextView
+                    android:id="@+id/tvFormError"
+                    style="@style/LoserText.Caption"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="12dp"
+                    android:textColor="@color/warn_text"
+                    android:visibility="gone"
+                    tools:text="Tired must be lower than Sick."
+                    tools:visibility="visible" />
+            </LinearLayout>
+
+            <!-- Notification preferences (205dp) -->
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="205dp"
+                android:layout_marginTop="16dp"
+                android:background="@drawable/bg_chart_card">
+
+                <TextView
+                    style="@style/LoserText.CardTitleLarge"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="18dp"
+                    android:layout_marginTop="16dp"
+                    android:text="@string/settings_nudge_title"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <TextView
+                    style="@style/LoserText.Headline"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="18dp"
+                    android:layout_marginTop="54dp"
+                    android:text="@string/settings_pet_updates_title"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <TextView
+                    style="@style/LoserText.Caption"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="18dp"
+                    android:layout_marginTop="77dp"
+                    android:layout_marginEnd="8dp"
+                    android:id="@+id/tvPetUpdatesDesc"
+                    android:text="@string/settings_pet_updates_desc"
+                    app:layout_constraintEnd_toStartOf="@id/switchPetUpdates"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <androidx.appcompat.widget.SwitchCompat
+                    android:id="@+id/switchPetUpdates"
+                    android:layout_width="48dp"
+                    android:layout_height="28dp"
+                    android:layout_marginTop="57dp"
+                    android:layout_marginEnd="18dp"
+                    android:background="@null"
+                    android:contentDescription="@string/settings_pet_updates_title"
+                    android:thumb="@drawable/switch_thumb"
+                    android:thumbTextPadding="0dp"
+                    android:track="@drawable/switch_track"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:showText="false" />
+
+                <TextView
+                    style="@style/LoserText.Headline"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="18dp"
+                    android:layout_marginTop="117dp"
+                    android:text="@string/settings_warnings_title"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <TextView
+                    style="@style/LoserText.Caption"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="18dp"
+                    android:layout_marginTop="140dp"
+                    android:layout_marginEnd="8dp"
+                    android:text="@string/settings_warnings_desc"
+                    app:layout_constraintEnd_toStartOf="@id/switchWarnings"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <androidx.appcompat.widget.SwitchCompat
+                    android:id="@+id/switchWarnings"
+                    android:layout_width="48dp"
+                    android:layout_height="28dp"
+                    android:layout_marginTop="120dp"
+                    android:layout_marginEnd="18dp"
+                    android:background="@null"
+                    android:contentDescription="@string/settings_warnings_title"
+                    android:thumb="@drawable/switch_thumb"
+                    android:thumbTextPadding="0dp"
+                    android:track="@drawable/switch_track"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:showText="false" />
+
+                <TextView
+                    android:id="@+id/tvNotificationStatus"
+                    style="@style/LoserText.StatusOk"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="18dp"
+                    android:layout_marginTop="180dp"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    tools:text="Notifications allowed on this device" />
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <!-- Reminder preview -->
+            <TextView
+                style="@style/LoserText.SubTitle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="4dp"
+                android:layout_marginTop="19dp"
+                android:text="@string/settings_preview_title" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="11dp"
+                android:background="@drawable/bg_stat_lavender"
+                android:minHeight="101dp"
+                android:orientation="vertical"
+                android:paddingStart="16dp"
+                android:paddingTop="13dp"
+                android:paddingEnd="16dp"
+                android:paddingBottom="12dp">
+
+                <TextView
+                    android:id="@+id/tvPreviewCaption"
+                    style="@style/LoserText.PreviewCaption"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    tools:text="MOCHI  •  SCREEN TIME" />
+
+                <TextView
+                    android:id="@+id/tvPreviewTitle"
+                    style="@style/LoserText.PreviewTitle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="7dp"
+                    tools:text="Time for a little break?" />
+
+                <TextView
+                    android:id="@+id/tvPreviewBody"
+                    style="@style/LoserText.Caption"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="3dp"
+                    tools:text="You’ve used 2h 24m of your 3h limit.\nGive your eyes—and Mochi—a rest." />
+            </LinearLayout>
+
+            <TextView
+                android:id="@+id/btnSave"
+                style="@style/LoserText.Button"
+                android:layout_width="match_parent"
+                android:layout_height="48dp"
+                android:layout_marginTop="17dp"
+                android:background="@drawable/bg_button"
+                android:clickable="true"
+                android:focusable="true"
+                android:foreground="?attr/selectableItemBackground"
+                android:text="@string/settings_save" />
+
+            <TextView
+                android:id="@+id/tvDeviceAccess"
+                style="@style/LoserText.Link"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginTop="8dp"
+                android:background="?attr/selectableItemBackground"
+                android:clickable="true"
+                android:focusable="true"
+                android:padding="8dp"
+                android:text="@string/settings_device_access" />
+        </LinearLayout>
+    </ScrollView>
+
+    <include
+        android:id="@+id/bottomNav"
+        layout="@layout/view_bottom_nav"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+</androidx.constraintlayout.widget.ConstraintLayout>
