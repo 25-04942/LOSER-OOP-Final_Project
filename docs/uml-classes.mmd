@@ -1,158 +1,130 @@
 classDiagram
-direction LR
+    direction TB
 
-class UsageRecord {
-  -String appName
-  -Category category
-  -int minutesUsed
-  -int longestSession
-  -LocalDate date
-  +addUsage(int, int)
-}
-class DailyRecord {
-  -LocalDate date
-  -int totalMinutes
-  -String petStateName
-  -Map categoryTotals
-}
-class Category {
-  <<enumeration>>
-  SOCIAL
-  GAMES
-  STUDY
-  COMMUNICATION
-  OTHER
-}
-class Settings {
-  -int dailyLimit
-  -LocalTime resetTime
-  -boolean notificationsOn
-  -boolean warningsOn
-  -int longSessionMinutes
-  -int tiredPercent
-  -int sickPercent
-  -int devastatedPercent
-  +setDailyLimit(int)
-  +setResetTime(LocalTime)
-  +setThresholds(int, int, int)
-  +dayOf(LocalDateTime) LocalDate
-}
-class UsageTracker {
-  +addUsage(UsageRecord)
-  +replaceAll(List)
-  +getTotalScreenTime() int
-  +getRatio() double
-  +createDailyRecord(String) DailyRecord
-  +reset(LocalDate)
-}
-class WeeklyReport {
-  +addDay(DailyRecord)
-  +getWeeklyAverage() double
-  +getHighestDay() DailyRecord
-  +getTrend() Trend
-}
-class Pet {
-  -String name
-  -PetState state
-  +setThresholds(double, double, double)
-  +updateState(double) boolean
-  +getAppearance() String
-}
-class PetState {
-  <<abstract>>
-  #String stateName
-  +matches(double) boolean
-  +getAppearance()* String
-  +getMessage()* String
-  +getStatusText()* String
-}
-class HealthyState
-class TiredState
-class SickState
-class DevastatedState
+    class AppSession {
+        -Settings settings
+        -Pet pet
+        -UsageTracker tracker
+        -WeeklyReport weekly
+        +sync(UsageSource) void
+        +rollOverIfNewDay() boolean
+    }
+    class Settings {
+        -int dailyLimit
+        -LocalTime resetTime
+        +setDailyLimit(int) void
+        +setThresholds(int, int, int) void
+    }
+    class UsageTracker {
+        +addUsage(UsageRecord) void
+        +getRatio() double
+        +createDailyRecord() DailyRecord
+    }
+    class WeeklyReport {
+        +addDay(DailyRecord) void
+        +getWeeklyAverage() double
+        +getTrend() Trend
+    }
+    class Pet {
+        -String name
+        -PetState currentState
+        +updateState(double) boolean
+    }
+    class UsageRecord {
+        -String appName
+        -Category category
+        -int minutesUsed
+    }
+    class DailyRecord {
+        -LocalDate date
+        -int totalMinutes
+    }
+    class Category {
+        <<enumeration>>
+        SOCIAL
+        GAMES
+        STUDY
+        COMMUNICATION
+        OTHER
+    }
+    class PetState {
+        <<abstract>>
+        +matches(double) boolean
+        +getAppearance()* String
+        +getMessage()* String
+    }
+    class HealthyState {
+    }
+    class TiredState {
+    }
+    class SickState {
+    }
+    class DevastatedState {
+    }
+    class Notifiable {
+        <<interface>>
+        +sendNotification(String) void
+    }
+    class NotificationService {
+        +sendNotification(String) void
+        #deliver(String) void
+    }
+    class UsageMonitor {
+        +check(...) void
+    }
+    class UsageSource {
+        <<interface>>
+        +readUsageFor(LocalDate) List
+    }
+    class SampleUsageSource {
+        +readUsageFor(LocalDate) List
+    }
+    class UsageReader {
+        <<Kotlin>>
+        +readUsageFor(LocalDate) List
+    }
+    class AndroidNotificationService {
+        #deliver(String) void
+    }
 
-class Notifiable {
-  <<interface>>
-  +sendNotification(String)
-}
-class NotificationService {
-  +sendNotification(String)
-  #deliver(String)
-  +notifyStateChange(PetState)
-  +notifyWarning(String)
-  +notifyLongSession(UsageRecord, int)
-}
-class AndroidNotificationService {
-  #deliver(String)
-}
-class UsageMonitor {
-  +check(UsageTracker, Settings, Pet, NotificationService)
-  +saveState() String
-  +restoreState(String)
-}
+    HealthyState --|> PetState : extends
+    TiredState --|> PetState : extends
+    SickState --|> PetState : extends
+    DevastatedState --|> PetState : extends
+    AndroidNotificationService --|> NotificationService : extends
+    NotificationService ..|> Notifiable : implements
+    SampleUsageSource ..|> UsageSource : implements
+    UsageReader ..|> UsageSource : implements
+    AppSession *-- Settings : owns
+    AppSession *-- Pet : owns
+    AppSession *-- UsageTracker : owns
+    AppSession *-- WeeklyReport : owns
+    AppSession *-- UsageMonitor : owns
+    Pet o-- PetState : has
+    UsageTracker o-- UsageRecord : has
+    WeeklyReport o-- DailyRecord : last 7 days
+    UsageRecord --> Category : uses
+    UsageTracker ..> DailyRecord : creates
+    AppSession ..> UsageSource : reads from
+    UsageMonitor ..> NotificationService : sends alerts
 
-class UsageSource {
-  <<interface>>
-  +readUsageFor(LocalDate, LocalTime) List
-}
-class SampleUsageSource
-class UsageReader {
-  <<Kotlin>>
-}
-class AppSession {
-  +sync(UsageSource, LocalDate)
-  +loadHistory(UsageSource, LocalDate)
-  +rollOverIfNewDay(LocalDate) boolean
-  +refreshPet()
-}
-class RecordCodec {
-  +encode(DailyRecord) String
-  +decode(String) DailyRecord
-}
-class AppStore {
-  +load(AppSession)
-  +saveSettings(AppSession)
-  +saveDays(WeeklyReport)
-}
-class UsageCheckWorker {
-  +doWork() Result
-}
-class InvalidSettingsException {
-  <<checked exception>>
-}
-class MissingPermissionException {
-  <<checked exception>>
-}
-
-PetState <|-- HealthyState
-PetState <|-- TiredState
-PetState <|-- SickState
-PetState <|-- DevastatedState
-Notifiable <|.. NotificationService
-NotificationService <|-- AndroidNotificationService
-UsageSource <|.. SampleUsageSource
-UsageSource <|.. UsageReader
-
-Pet o-- PetState : current
-Pet o-- PetState : all states
-UsageTracker o-- UsageRecord
-UsageTracker ..> DailyRecord : creates
-UsageTracker --> Settings
-UsageRecord --> Category
-DailyRecord --> Category
-WeeklyReport o-- DailyRecord : last 7
-
-AppSession *-- Settings
-AppSession *-- Pet
-AppSession *-- UsageTracker
-AppSession *-- WeeklyReport
-AppSession *-- UsageMonitor
-AppSession --> NotificationService
-AppSession ..> UsageSource : reads
-UsageMonitor ..> NotificationService : sends alerts
-
-AppStore ..> AppSession : saves/loads
-AppStore ..> RecordCodec
-UsageCheckWorker ..> AppSession
-Settings ..> InvalidSettingsException : throws
-UsageSource ..> MissingPermissionException : throws
+    style AppSession fill:#EFF6FF,stroke:#60A5FA,stroke-width:2px
+    style Settings fill:#F0FDFA,stroke:#2DD4BF,stroke-width:2px
+    style UsageTracker fill:#F0FDFA,stroke:#2DD4BF,stroke-width:2px
+    style WeeklyReport fill:#F0FDFA,stroke:#2DD4BF,stroke-width:2px
+    style Pet fill:#F0FDFA,stroke:#2DD4BF,stroke-width:2px
+    style UsageRecord fill:#F0FDF4,stroke:#4ADE80,stroke-width:2px
+    style DailyRecord fill:#F0FDF4,stroke:#4ADE80,stroke-width:2px
+    style Category fill:#F0FDF4,stroke:#4ADE80,stroke-width:2px
+    style PetState fill:#FFF7ED,stroke:#FB923C,stroke-width:2px
+    style HealthyState fill:#FFF7ED,stroke:#FB923C,stroke-width:2px
+    style TiredState fill:#FFF7ED,stroke:#FB923C,stroke-width:2px
+    style SickState fill:#FFF7ED,stroke:#FB923C,stroke-width:2px
+    style DevastatedState fill:#FFF7ED,stroke:#FB923C,stroke-width:2px
+    style Notifiable fill:#F3F0FF,stroke:#A78BFA,stroke-width:2px
+    style NotificationService fill:#F3F0FF,stroke:#A78BFA,stroke-width:2px
+    style UsageMonitor fill:#F3F0FF,stroke:#A78BFA,stroke-width:2px
+    style UsageSource fill:#FEFCE8,stroke:#FACC15,stroke-width:2px
+    style SampleUsageSource fill:#FEFCE8,stroke:#FACC15,stroke-width:2px
+    style UsageReader fill:#FDF4FF,stroke:#E879F9,stroke-width:2px
+    style AndroidNotificationService fill:#FDF4FF,stroke:#E879F9,stroke-width:2px
